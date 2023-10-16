@@ -1,0 +1,10 @@
+DEBUG:root:Connection to server on port 5000
+DEBUG:root:Connection to server on port 5001
+DEBUG:root:Connection to server on port 5001
+DEBUG:root:Connection to server on port 5001
+DEBUG:PIL.TiffImagePlugin:tag: Orientation (274) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 34 - Data Location: 74 - value: b'\x00\x00\x00\xb4\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 46 - Data Location: 82 - value: b'\x00\x00\x00\xb4\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00Z'
+DEBUG:root:Connection to server on port 5001

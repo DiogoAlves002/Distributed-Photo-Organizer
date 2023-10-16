@@ -1,0 +1,53 @@
+PROTOCOLO
+
+New node -> Anchor Node 
+The new node sends a message to the anchor node with the size of its folder
+%1{'method': 'HELLOTHERE', 'args': {'new_id': self.node_id, 'from': self._address, 'images' : self.dirSize}}
+
+Anchor Node -> New Node
+The anchor answers the new node and sends the number of current connected peers
+%1{'method' : 'GENERALKENOBI', 'args' : { 'origin_id' : self.node_id, 'from' : self._address, 'nodes' : self.connected_peers }}
+
+Anchor Node -> Every Connected Peer except the new node
+%1{'method':'BROADCAST', 'args': { 'new_id': new_id, 'new_addr' : new_addr , 'from' : ('localhost', self._port)}}
+
+Every Connected Peer except the new node -> New Node 
+Every node previously in the network handshakes the new node
+%1{'method':'HANDSHAKE', 'args': { 'node_id' : self.node_id , 'from': ('localhost', self._port)}}
+
+Node -> other Node
+Sending images to backup
+%1{'method':'SENDIMAGEBACKUP', 'args': {'id' : id, 'from' : self._address, 'amount' : number_of_images}}
+
+Node -> other Node
+Informing the node of who is his backup
+%1{'method':'BACKUP', 'args': {'backup_addr' : backupNodeAddr, 'from' : self.node_id }}
+
+Node -> other Node
+Sending a election message with the biggest node id that will in theory be elected as the new anchor
+%1{'method':'ELECTIONRESULT', 'args': {'new_anchor_id' : new_anchor_id, 'new_anchor_addr' : new_anchor_addr, 'from' : origin_addr}}
+
+Node -> other Node
+Sending a election message to the new anchor node
+%1{'method':'NEWANCHOR', 'args': {'new_anchor_id' : new_anchor_id, 'new_anchor_addr' : new_anchor_addr, 'from' : origin_addr}}
+
+Mensagens entre peers e clientes:
+%1{'method':'GETIMAGE', 'args': {'id' : id, 'from' : addr, 'photo' : photo}}
+%1{'method':'GETIMAGELIST', 'args': {'receiver_id': id, 'from' : addr}}
+
+
+%1{'method':'SENDIMAGELIST', 'args': {'id' : id, 'from' : addr, 'list' : list}}
+%1{'method':'SENDIMAGE', 'args': {'id' : id, 'from' : addr, 'size' : image_size}} // sendimage envia primeiro esta msg a avisar e de seguida envia a imagem
+
+Node -> other Node 
+%1{'method':'FIND', 'args': { 'node_id' : id , 'from' : node_addr, 'hash' : hash}}
+
+Node -> other Node 
+%1{'method':'IMAGE', 'args': { 'node_id' : id , 'from' : node_addr, 'image' : image}}
+
+Node -> other Node 
+%1{'method':'LISTIMAGE', 'args': { 'node_id' : id , 'from' : node_addr}}
+
+Node -> other Node 
+%1{'method':'LISTREADY', 'args': { 'node_id' : id , 'from' : node_addr, 'list' : list}}
+
